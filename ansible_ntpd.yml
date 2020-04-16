@@ -1,0 +1,28 @@
+---
+- hosts: all 
+  connection: local
+  
+  vars:
+    time_server: 0.debian.pool.ntp.org
+
+  tasks:
+
+    - name: Install NTPD or Update it
+      apt: name=ntp state=latest
+
+    - name: deploy ntp.conf 
+      template:
+        src: ntp.conf.j2
+        dest: /etc/ntp.conf
+        owner: root
+        group: root
+        mode: 644
+      notify: restart ntpd
+
+  handlers:
+     - name: restart ntpd
+       service: 
+         name: ntp 
+         state: restarted 
+         enabled: true
+
