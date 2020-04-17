@@ -33,11 +33,9 @@ ansible-playbook ansible_ntpd.yml -i hosts.yml
 
 ## How to test the deploy:
 
-- Connect to you broser and put the URL: http://< you host IP >:8080
+- Check that the configuration file /etc/ntp.conf contains the added time server,
 
-- You can also use : curl -silent < you host IP >:8080
-
-- Please check that you are able to get "Hello World" (string stord in the Mysql)
+- check that ntp daemon is running : service ntp status
 
 
 ## Author Information
